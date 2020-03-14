@@ -5,23 +5,15 @@ class Member:
 		self.lname = lname
 		self.initdeposit = initdeposit
 		self.bal = initdeposit + 5
-        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
-        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
 		
 	def deposit(self, amtdeposit):
-		self.bal = self.bal + amtdeposit
-        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
-        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+		return self.bal + amtdeposit
 		
 	def withdraw (self, amtwithdraw):
 		if amtwithdraw > self.bal:
-		    print("Not enough money in account for transaction")
-            # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
+			print("Not enough money in account for transaction")
 		else:
-			self.bal = self.bal - amtwithdraw
-        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
-        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
-
+			return self.bal - amtwithdraw
 
 print("Enter member's first name")
 print()
