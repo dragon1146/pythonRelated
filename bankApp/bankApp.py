@@ -23,28 +23,28 @@ class Member:
         # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
 
 
-print("Enter member's first name")
-print()
-fname = input(">")	
+# print("Enter member's first name")
+# print()
+# fname = input(">")	
 
-print("Enter member's last name")
-print()
-lname = input(">")
+# print("Enter member's last name")
+# print()
+# lname = input(">")
 
-print("Enter member's initial deposit")
-print() 
-initdeposit = int(input(">"))	
+# print("Enter member's initial deposit")
+# print() 
+# initdeposit = int(input(">"))	
 			
 				
 	
-member01 = Member(fname, lname, initdeposit)
+# member01 = Member(fname, lname, initdeposit)
 
-print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+# print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
 
 
-member01.deposit(50)
-print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+# member01.deposit(50)
+# print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
 
 	
-member01.withdraw(10)		
-print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+# member01.withdraw(10)		
+# print("{}\n{}\n{}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
