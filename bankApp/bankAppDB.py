@@ -1,20 +1,49 @@
 import sqlite3
-from bankApp import Member
 
 
+class Member:
+	bal = 5
+	def __init__(self, fname, lname, initdeposit):
+		self.fname = fname
+		self.lname = lname
+		self.initdeposit = initdeposit
+		self.bal = initdeposit + 5
+        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
+        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+		
+	def deposit(self, amtdeposit):
+		self.bal = self.bal + amtdeposit
+        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
+        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
+		
+	def withdraw (self, amtwithdraw):
+		if amtwithdraw > self.bal:
+		    print("Not enough money in account for transaction")
+            # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
+		else:
+			self.bal = self.bal - amtwithdraw
+        # print("{}" "*5 {}" "*5 {}".format("First Name", "Last Name","Account Balance"))
+        # print("{}" "*5 {}" "*5 {}{}\n".format(member01.fname, member01.lname,"$", member01.bal))
 
-conn = sqlite3.connect('bankApp.db')
 
-c = conn.cursor()
+def createDB(dbName):
+    conn = sqlite3.connect(dbName)
 
-# c.execute("""CREATE TABLE members(
-# fname text,
-# lname text, 
-# bal integer   
-# )""")
+    c = conn.cursor()
+
+    c.execute("""CREATE TABLE members(
+    fname text,
+    lname text, 
+    bal integer   
+    )""")
 # THIS BOC WILL CREATE 2 MEMBER OBJS WITH THE FOLLOWING ATTRIBUTES
 # THIS PROCESS IS CURRENTLY DONE WITH STATIC ENTRIES BUT WILL BE CHANGED TO 
 # DYNAMIC ENTRIES PROVIDED BY THE USER 
+
+print("Enter the name of the database")
+print()
+dbName = input(">")
+createDB(dbName)
 
 print("Enter member's first name")
 print()
@@ -30,7 +59,9 @@ initdeposit = int(input(">"))
 mem01 = Member(fname,lname, initdeposit)
 # mem02 = Member('bob','smith', 2)
 
+conn = sqlite3.connect(dbName)
 
+c = conn.cursor()
 # THIS BOC WILL INSERT THE NEW MEMBERS WITH THEIR ATTRIBUTES IN TO THE TABLE CALLED MEMBERS
 c.execute("INSERT INTO Members VALUES (:first, :last, :bal)", {'first':mem01.fname, 'last':mem01.lname, 'bal':mem01.bal})
 # c.execute("INSERT INTO Members VALUES (:first, :last, :bal)", {'first':mem02.fname, 'last':mem02.lname, 'bal':mem02.bal})
