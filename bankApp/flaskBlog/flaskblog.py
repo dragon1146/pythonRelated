@@ -1,7 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
+from forms import RegistrationForm, LoginForm
+
 # THIS BOC IS CREATING AN OBJ THAT WILL REPRESENT THE WEB APP CALLED APP
 app = Flask(__name__)
 
+# THS SECRET KEY ALLOWS FOR THE WEB SITE TO REMEMBER THE USER'S LOG ON INFO
+# IT ALSO MITIGATES OTHER DATABASE VULNERABILITIES
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 # THIS BOC SIMULATES A BLOG BEING POSTING TO THE HOME PAGE
 # AS THOUGH IT WAS INPUTTED BY A BLOGGER
@@ -50,6 +55,30 @@ def about():
     # THE RENDER_TAMPLE METHOD IS BEING USED TO GRAB THE about.html FILE
     # IN THE templates FOLDER AND RENDER IT INTO THIS PYTHON FILE WHEN EXECUTED
     return render_template('about.html', title='About')
+
+# THIS ROUTE WAS ADDED TO SEND THE USER TO A PAGE SO THEY CAN REGISTER FOR A NEW ACCOUNT
+# "INPUT EXPLAINATION FOR methods"
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    # "INPUT EXPLAINATION FOR validating data"
+    if form.validate_on_submit():
+        # "INPUT EXPLAINATION FOR flash messages"
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template('login.html', title='Login', form=form)
 
 
 # THIS BOC ALLOWS THE PYTHON CODE TO RUN AND ACCEPT UPDATES TO THE FILE, AND LOAD THEM
